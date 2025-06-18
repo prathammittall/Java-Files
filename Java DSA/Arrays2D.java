@@ -52,7 +52,7 @@ public class Arrays2D {
         // --------------Brute Force Method------------
         
         // ----------------More Optimised Method--------------
-        for (int i=0; i<n; i++) { // Time complexity = O(n)
+        for (int i=0; i<matrix.length; i++) { // Time complexity = O(n)
             // pd
             sum +=  matrix[i][i];
             // sd
@@ -65,6 +65,23 @@ public class Arrays2D {
         return sum;
     }
 
+    public static boolean searchInSortedArray(int matrix[][], int key) {
+        // Staircase Search
+        int row = 0, col = matrix[0].length-1;
+
+        while (row<matrix.length && col>=0) {
+            if (matrix[row][col]==key) {
+                System.out.print("Found Key at (" + row + "," + col + ")");
+                return true;
+            } else if (key < matrix[row][col]) {
+                col--;
+            } else {
+                row++;
+            }
+        }
+        System.out.println("Key Not Found!");
+        return false;
+    }
     public static void main(String[] args) {
         int matrix[][] = {
             {1, 2, 3, 4},
@@ -74,6 +91,7 @@ public class Arrays2D {
         };
 
         // printSpiral(matrix);
-        System.out.print("%d", diagonalSum(matrix));
+        // System.out.print("%d", diagonalSum(matrix));
+        searchInSortedArray(matrix, 11);
     }
 }
